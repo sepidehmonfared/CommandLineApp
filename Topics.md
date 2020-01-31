@@ -1,5 +1,6 @@
 # LevelUp CommandLineApp Solution
 
+## Design Pattern
 I used decorator design pattern to solve this exercise.
 
 I used Decorator pattern to construct complex text filtering rules
@@ -14,4 +15,6 @@ i though about another structure that filters are able to complement each other 
 
     i used https://designpatternsphp.readthedocs.io/en/latest/Structural/Decorator/README.html
 
+
+## PHPUnit
 I used Also PHPUnit For Testing
