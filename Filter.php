@@ -21,12 +21,12 @@ interface InputFormat
  */
 class Input implements InputFormat
 {
-    
+
     /**
      * FilterText
-     * 
-     * @param $text string
-     * 
+     *
+     * @param string $text input text
+     *
      * @return string
      */
     public function filterText(string $text) : string 
@@ -43,27 +43,29 @@ class Input implements InputFormat
 class TextFilter implements InputFormat
 {
     /**
+     * Type of inputFormat object
+     *
      * @var InputFormat
      */
-    protected $inputFormat;
+    protected InputFormat $inputFormat;
+
 
     /**
-     * FilterText
-     * 
-     * @param $inputFormat InputFormat
-     * 
-     * @return string
+     * TextFilter constructor.
+     *
+     * @param InputFormat $inputFormat inputFormat object
      */
     public function __construct(InputFormat $inputFormat)
     {
         $this->inputFormat = $inputFormat;
     }
 
+
     /**
      * FilterText
-     * 
-     * @param $text string
-     * 
+     *
+     * @param string $text input text
+     *
      * @return string
      */
     public function filterText(string $text): string
@@ -97,26 +99,36 @@ class PlainTextFilter extends TextFilter
 }
 
 
-
 /**
- * Strips only HTML tags and attributes that
+ * Class XSSFilter
  */
 class XSSFilter extends TextFilter
 {
 
-    private $_tagPatterns = [
+    /**
+     * Danger tag pattern
+     *
+     * @var array
+     */
+    private array $_tagPatterns = [
         "|<script.*?>([\s\S]*)?</script>|i", // ..
     ];
 
-    private $_attributes = [
+    /**
+     * Danger Event Pattern
+     *
+     * @var array
+     */
+    private array $_attributes = [
         "onclick", "onkeypress", "onload",//..
     ];
 
+
     /**
      * FilterText
-     * 
-     * @param $text string
-     * 
+     *
+     * @param string $text input text
+     *
      * @return string
      */
     public function filterText(string $text): string
@@ -144,18 +156,23 @@ class XSSFilter extends TextFilter
 
 
 /**
- * Remove special chars
+ * Class SpecialCharsFilter
  */
 class SpecialCharsFilter extends TextFilter
 {
-    private $_special_chars = ['!', '@', '#', '$', '%', '^', '&', '*'];
+    /**
+     * Special chars which should be remove
+     *
+     * @var array
+     */
+    private array $_special_chars = ['!', '@', '#', '$', '%', '^', '&', '*'];
 
 
     /**
      * FilterText
-     * 
-     * @param $text string
-     * 
+     *
+     * @param string $text input text
+     *
      * @return string
      */
     function filterText(string $text) :string 
