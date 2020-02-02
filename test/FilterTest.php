@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Filter.php';
+require_once '../src/Filter.php';
 
 
 /**
