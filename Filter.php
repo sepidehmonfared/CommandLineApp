@@ -23,7 +23,9 @@ class Input implements InputFormat
 {
 
     /**
-     * @param string $text
+     * FilterText
+     *
+     * @param string $text input text
      *
      * @return string
      */
@@ -41,6 +43,8 @@ class Input implements InputFormat
 class TextFilter implements InputFormat
 {
     /**
+     * Type of inputFormat object
+     *
      * @var InputFormat
      */
     protected InputFormat $inputFormat;
@@ -48,7 +52,8 @@ class TextFilter implements InputFormat
 
     /**
      * TextFilter constructor.
-     * @param InputFormat $inputFormat
+     *
+     * @param InputFormat $inputFormat inputFormat object
      */
     public function __construct(InputFormat $inputFormat)
     {
@@ -57,7 +62,9 @@ class TextFilter implements InputFormat
 
 
     /**
-     * @param string $text
+     * FilterText
+     *
+     * @param string $text input text
      *
      * @return string
      */
@@ -99,6 +106,8 @@ class XSSFilter extends TextFilter
 {
 
     /**
+     * Danger tag pattern
+     *
      * @var array
      */
     private array $_tagPatterns = [
@@ -106,6 +115,8 @@ class XSSFilter extends TextFilter
     ];
 
     /**
+     * Danger Event Pattern
+     *
      * @var array
      */
     private array $_attributes = [
@@ -114,7 +125,9 @@ class XSSFilter extends TextFilter
 
 
     /**
-     * @param string $text
+     * FilterText
+     *
+     * @param string $text input text
      *
      * @return string
      */
@@ -148,13 +161,17 @@ class XSSFilter extends TextFilter
 class SpecialCharsFilter extends TextFilter
 {
     /**
+     * Special chars which should be remove
+     *
      * @var array
      */
     private array $_special_chars = ['!', '@', '#', '$', '%', '^', '&', '*'];
 
 
     /**
-     * @param string $text
+     * FilterText
+     *
+     * @param string $text input text
      *
      * @return string
      */

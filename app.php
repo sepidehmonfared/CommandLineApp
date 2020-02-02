@@ -13,17 +13,21 @@
 require_once 'Filter.php';
 require_once 'Event.php';
 
-$input = $argv[1];
+$input = readline();
 
 $filter = new SpecialCharsFilter(new PlainTextFilter(new XSSFilter(new Input)));
 $clean_input  = $filter->filterText($input);
 
+echo "\033[33m Posting String... \n\e[0;34;42m".$clean_input."\e[0m\n";
 
 try{
-    echo Event::create()->post(['body' => $clean_input]);
+    echo "\033[33m Response: \n";
+    echo "\033[32m".Event::create()->post(['body' => $clean_input]);
 }catch(Exception $e){
     echo $e->getMessage();
 }
+
+exit;
 
 
 

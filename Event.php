@@ -2,6 +2,12 @@
 
 /**
  * Class Event
+ *
+ * @category LevelUp
+ * @package  Event
+ * @author   Sepideh <monfared.sepideh@gmail.com>
+ * @license  MIT https://github.com/sepidehmonfared
+ * @link     https://github.com/sepidehmonfared
  */
 
 class Event
@@ -9,6 +15,8 @@ class Event
     const URL = "https://jsonplaceholder.typicode.com/comments";
 
     /**
+     * Create an event
+     *
      * @return Event
      */
     public static function create() 
@@ -17,7 +25,9 @@ class Event
     }
 
     /**
-     * @param array $data
+     * Post data to url
+     *
+     * @param array $data payload
      *
      * @return bool|string
      * @throws Exception

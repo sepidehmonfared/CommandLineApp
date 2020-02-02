@@ -19,6 +19,8 @@ class FilterTest extends PHPUnit\Framework\TestCase
 
     /**
      * Input filterText just returned the raw text without any filter
+     *
+     * @return void
      */
     public function testFilterText()
     {
@@ -28,6 +30,8 @@ class FilterTest extends PHPUnit\Framework\TestCase
 
     /**
      * PlainText Filter Should remove all markdown and extra whitespace
+     *
+     * @return void
      */
     public function testInputWithPlainTextFilter()
     {
@@ -39,7 +43,8 @@ class FilterTest extends PHPUnit\Framework\TestCase
 
     /**
      * XSS Filter Should remove all dangerous keywords like onload, onclick, ...
-     * 
+     *
+     * @return void
      */
     public function testInputWithXSSFilter()
     {
@@ -55,7 +60,8 @@ class FilterTest extends PHPUnit\Framework\TestCase
 
     /**
      * PlainText AND XSS Filters
-     * 
+     *
+     * @return void
      */
     public function testInputWithXSSAndPlainFilter()
     {
@@ -69,7 +75,8 @@ class FilterTest extends PHPUnit\Framework\TestCase
 
     /**
      * SpecialCharsFilter should remove chars which defined in class
-     * 
+     *
+     * @return void
      */
     public function testInputWithSpechialCharsAndXSSAndPlainFilter()
     {
