@@ -17,7 +17,8 @@ $input = $argv[1];
 
 $filter = new SpecialCharsFilter(new PlainTextFilter(new XSSFilter(new Input)));
 $clean_input  = $filter->filterText($input);
-echo $clean_input;die;
+
+
 try{
     echo Event::create()->post(['body' => $clean_input]);
 }catch(Exception $e){

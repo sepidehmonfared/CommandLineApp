@@ -1,29 +1,14 @@
 <?php
 
 /**
- * Event Class 
+ * Class Event
  */
-/* 
 
-fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST',
-    body: JSON.stringify({
-      title: 'foo',
-      body: 'bar',
-      userId: 1
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
-  })
-   */
 class Event
 {
-    const URL = "https://jsonplaceholder.typicode.com/comments"; 
+    const URL = "https://jsonplaceholder.typicode.com/comments";
 
     /**
-     * Create self 
-     * 
      * @return Event
      */
     public static function create() 
@@ -32,11 +17,10 @@ class Event
     }
 
     /**
-     * Post Data
-     * 
-     * @param $data array
-     * 
-     * @return mixed
+     * @param array $data
+     *
+     * @return bool|string
+     * @throws Exception
      */
     public function post(array $data)
     {

@@ -2,6 +2,10 @@
 
 require_once 'Filter.php';
 
+
+/**
+ * Class FilterTest
+ */
 class FilterTest extends TestCase
 {
     const STATEMENT = "<html> <body> Hello!!
@@ -18,7 +22,7 @@ class FilterTest extends TestCase
      */
     public function testFilterText()
     {
-        $inupt = new Input();
+        $input = new Input();;
         $this->assertSame('<h1>salam<h1/>', $input->filterText('<h1>salam<h1/>'));
     }
 

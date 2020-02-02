@@ -21,12 +21,10 @@ interface InputFormat
  */
 class Input implements InputFormat
 {
-    
+
     /**
-     * FilterText
-     * 
-     * @param $text string
-     * 
+     * @param string $text
+     *
      * @return string
      */
     public function filterText(string $text) : string 
@@ -45,25 +43,22 @@ class TextFilter implements InputFormat
     /**
      * @var InputFormat
      */
-    protected $inputFormat;
+    protected InputFormat $inputFormat;
+
 
     /**
-     * FilterText
-     * 
-     * @param $inputFormat InputFormat
-     * 
-     * @return string
+     * TextFilter constructor.
+     * @param InputFormat $inputFormat
      */
     public function __construct(InputFormat $inputFormat)
     {
         $this->inputFormat = $inputFormat;
     }
 
+
     /**
-     * FilterText
-     * 
-     * @param $text string
-     * 
+     * @param string $text
+     *
      * @return string
      */
     public function filterText(string $text): string
@@ -97,26 +92,30 @@ class PlainTextFilter extends TextFilter
 }
 
 
-
 /**
- * Strips only HTML tags and attributes that
+ * Class XSSFilter
  */
 class XSSFilter extends TextFilter
 {
 
-    private $_tagPatterns = [
+    /**
+     * @var array
+     */
+    private array $_tagPatterns = [
         "|<script.*?>([\s\S]*)?</script>|i", // ..
     ];
 
-    private $_attributes = [
+    /**
+     * @var array
+     */
+    private array $_attributes = [
         "onclick", "onkeypress", "onload",//..
     ];
 
+
     /**
-     * FilterText
-     * 
-     * @param $text string
-     * 
+     * @param string $text
+     *
      * @return string
      */
     public function filterText(string $text): string
@@ -144,18 +143,19 @@ class XSSFilter extends TextFilter
 
 
 /**
- * Remove special chars
+ * Class SpecialCharsFilter
  */
 class SpecialCharsFilter extends TextFilter
 {
-    private $_special_chars = ['!', '@', '#', '$', '%', '^', '&', '*'];
+    /**
+     * @var array
+     */
+    private array $_special_chars = ['!', '@', '#', '$', '%', '^', '&', '*'];
 
 
     /**
-     * FilterText
-     * 
-     * @param $text string
-     * 
+     * @param string $text
+     *
      * @return string
      */
     function filterText(string $text) :string 
