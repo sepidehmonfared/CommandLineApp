@@ -6,7 +6,7 @@ require_once 'Filter.php';
 /**
  * Class FilterTest
  */
-class FilterTest extends TestCase
+class FilterTest extends PHPUnit\Framework\TestCase
 {
     const STATEMENT = "<html> <body> Hello!!
     Please visit my <a href='https://github.com/sepidehmonfared'>GithHub</a>.
@@ -33,7 +33,7 @@ class FilterTest extends TestCase
     {
         $strip_filter = new PlainTextFilter(new Input());
 
-        $result = "Hello!!Please visit my GithHub.** monfared.sepideh@gmail.com ** XSSAttack(); onload=alert('HAHA')";
+        $result = "Hello!! Please visit my GithHub. ** monfared.sepideh@gmail.com ** XSSAttack(); onload=alert('HAHA')";
         $this->assertSame($result, $strip_filter->filterText(self::STATEMENT));
     }
 
@@ -46,9 +46,9 @@ class FilterTest extends TestCase
         $filter = new XSSFilter(new Input());
         $this->assertSame(
             "<html> <body> Hello!!
-            Please visit my <a href='https://github.com/sepidehmonfared'>GithHub</a>.
-            ** monfared.sepideh@gmail.com **
-             </body></html>", 
+    Please visit my <a href='https://github.com/sepidehmonfared'>GithHub</a>.
+    ** monfared.sepideh@gmail.com **
+     </body></html>",
             $filter->filterText(self::STATEMENT)
         );
     }
@@ -61,7 +61,7 @@ class FilterTest extends TestCase
     {
         $filter = new PlainTextFilter(new XSSFilter(new Input()));
         $this->assertSame(
-            'Hello!!Please visit my GithHub.** monfared.sepideh@gmail.com **', 
+            'Hello!! Please visit my GithHub. ** monfared.sepideh@gmail.com **',
             $filter->filterText(self::STATEMENT)
         );
     }
@@ -75,7 +75,7 @@ class FilterTest extends TestCase
     {
         $filter = new SpecialCharsFilter(new PlainTextFilter(new XSSFilter(new Input)));
         $this->assertSame(
-            'HelloPlease visit my GithHub. monfared.sepidehgmail.com ', 
+            'Hello Please visit my GithHub.  monfared.sepidehgmail.com ',
             $filter->filterText(self::STATEMENT)
         );
     }
