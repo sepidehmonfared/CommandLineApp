@@ -10,8 +10,8 @@
  * @link     https://github.com/sepidehmonfared
  */
 
-require_once 'Filter.php';
-require_once 'Event.php';
+require_once 'src/Filter.php';
+require_once 'src/Event.php';
 
 $input = readline();
 
